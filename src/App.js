@@ -21,8 +21,8 @@ function App() {
             <div className="photo-list">
                 {photos.map(photo => (
                     <div key={photo.id} className="photo-item">
-                        <img src={`/photos/${photo.id}`} alt={`${photo.id}`} />
-                        <p>Date: {new Date(photo.date).toLocaleString()}</p>
+                        <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
+                        <p>Date: {photo.date}</p>
                     </div>
                 ))}
             </div>
