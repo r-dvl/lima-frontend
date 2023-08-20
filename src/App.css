@@ -28,6 +28,24 @@
   color: #61dafb;
 }
 
+.photo-list {
+  display: grid;
+  margin: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.photo-item {
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.photo-item img {
+  max-width: 100%;
+  height: auto;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

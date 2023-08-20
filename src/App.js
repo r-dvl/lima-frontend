@@ -1,5 +1,10 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme';
+import { Paper } from '@mui/material';
+import TopNav from './TopNav';
+import Footer from './Footer';
 
 function App() {
     const [photos, setPhotos] = useState([]);
@@ -16,19 +21,21 @@ function App() {
     }, []);
 
     return (
-        <div className="App">
-            <h1>Cat-Watcher</h1>
-            <div className="photo-list">
-                {photos.map(photo => (
-                    <div key={photo.id} className="photo-item">
-                        <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
-                        <p>Date: {photo.date}</p>
-                    </div>
-                ))}
+        <ThemeProvider theme={theme}>
+            <div className={"App"}>
+                <TopNav />
+                <div className="photo-list">
+                    {photos.map(photo => (
+                        <Paper key={photo.id} elevation={3} className="photo-item">
+                            <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
+                            <p>Date: {photo.date}</p>
+                        </Paper>
+                    ))}
+                </div>
+                <Footer />
             </div>
-        </div>
+        </ThemeProvider>
     );
 }
-
 
 export default App;
