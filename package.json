@@ -1,7 +1,7 @@
 {
   "name": "lima-frontend",
-  "version": "0.1.0",
-  "private": true,
+  "version": "v1.0.0",
+  "private": false,
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
