@@ -1,8 +1,11 @@
 {
-  "name": "lima-frontend",
-  "version": "v1.0.0",
+  "name": "@R-dVL/lima-frontend",
+  "version": "1.0.0",
   "private": false,
   "proxy": "http://localhost:3001",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/R-dVL"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
