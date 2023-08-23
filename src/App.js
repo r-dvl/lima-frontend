@@ -20,12 +20,18 @@ function App() {
             });
     }, []);
 
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    const filteredPhotos = photos.filter(photo => photo.date === currentDate);
+
+    const sortedPhotos = filteredPhotos.sort((a, b) => b.date.localeCompare(a.date));
+
     return (
         <ThemeProvider theme={theme}>
             <div className={"App"}>
                 <TopNav />
                 <div className="photo-list">
-                    {photos.map(photo => (
+                    {sortedPhotos.map(photo => (
                         <Paper key={photo.id} elevation={3} className="photo-item">
                             <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
                             <p>Date: {photo.date}</p>
