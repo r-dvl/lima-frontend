@@ -1,7 +1,17 @@
 .footer {
     padding: 20px;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
+}
+
+@media (min-width: 769px) {
+    .footer {
+        position: fixed;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer {
+    }
 }
