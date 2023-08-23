@@ -13,7 +13,7 @@ function Footer() {
     return (
         <Paper elevation={3} square className="footer">
             <Typography variant="body2" align="center">
-                © Lima. R-dVL.
+                © 2023 Lima. WebApp by R-dVL.
             </Typography>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
                 <IconButton onClick={() => openSocialMediaProfile('https://www.linkedin.com/in/r-dvl/')}>

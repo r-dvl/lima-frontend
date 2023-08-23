@@ -27,8 +27,19 @@
 .photo-list {
     display: grid;
     margin: 20px;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .photo-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .photo-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 .photo-item {
