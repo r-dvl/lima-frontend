@@ -1,0 +1,47 @@
+.react-datepicker {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: #f5f5f5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.react-datepicker__input-container input {
+    padding: 8px 12px;
+    text-align: center;
+    border-radius: 4px;
+    outline: none;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.photo-list {
+    display: grid;
+    margin: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.photo-item {
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.photo-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.filters {
+    margin-top: 70px;
+}

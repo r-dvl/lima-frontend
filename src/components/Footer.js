@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './Footer.css';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
