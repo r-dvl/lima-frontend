@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.css';
-import Logo from "../logo.svg";
+import Logo from "../../logo.svg";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';

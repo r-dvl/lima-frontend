@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import './Content.css';
+import './CatWatcher.css';
 import { Paper } from '@mui/material';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function Content() {
+function CatWatcher() {
     const [photos, setPhotos] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -32,7 +32,7 @@ function Content() {
         .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     return (
-        <div>
+        <div className="container">
             <div className="filters">
                 <DatePicker
                     selected={selectedDate}
@@ -53,4 +53,4 @@ function Content() {
     );
 }
 
-export default Content;
+export default CatWatcher;

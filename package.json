@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": false,
   "repository": "https://github.com/R-dVL/lima-frontend.git",
-  "proxy": "http://192.168.1.55:3001",
+  "proxy": "http://localhost:3001",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/R-dVL"
   },
@@ -21,10 +21,11 @@
     "@fontsource/roboto": "^5.0.8",
     "@emotion/styled": "^11.11.0",
     "@emotion/react": "^11.11.1",
-    "react-datepicker": "4.16.0"
+    "react-datepicker": "4.16.0",
+    "react-router-dom": "5.3.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3002 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

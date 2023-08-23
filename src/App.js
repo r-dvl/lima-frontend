@@ -1,17 +1,17 @@
 import React from 'react';
-import Header from "./components/Header";
-import Content from "./components/Content";
-import Footer from "./components/Footer";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import CatWatcherPage from './pages/CatWatcherPage'
 import './App.css';
 
 function App() {
 
     return (
-        <div className={"App"}>
-            <Header />
-            <Content />
-            <Footer />
-        </div>
+        <Router>
+            <Switch>
+                {/*<Route path="/" exact component={HomePage}/>*/}
+                <Route path="/" component={CatWatcherPage} />
+            </Switch>
+        </Router>
     );
 }
 
