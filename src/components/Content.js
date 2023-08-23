@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 function Content() {
     const [photos, setPhotos] = useState([]);
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
     useEffect(() => {
         fetch('/photos')
