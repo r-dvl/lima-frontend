@@ -7,15 +7,30 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function CatWatcher() {
+    // Convert date picker time to yyyy-mm-dd (Revisar, puto datepicker)
+    function convertToYyyMmDd(dateString) {
+        const date = new Date(dateString);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        const formattedDate = `${year}-${month}-${day}`;
+        return formattedDate;
+    }
+
     // Photos
     const [photos, setPhotos] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [currentPage, setCurrentPage] = useState(1);
     const photosPerPage = 9;
 
+    // Transform date from datepicker to Api date
+    const apiDate = convertToYyyMmDd(selectedDate)
+
     // Get Photos from server
     useEffect(() => {
-        fetch(`/photos/date/${selectedDate}`)
+        fetch(`/photos/date/${apiDate}`)
             .then(response => response.json())
             .then(photosData => {
                 setPhotos(photosData);
@@ -30,10 +45,14 @@ function CatWatcher() {
         .filter(photo => {
             if (!selectedDate) return true;
             const photoDate = new Date(photo.date);
+            console.log(photoDate)
             const selectedDateStart = new Date(selectedDate);
+            console.log(selectedDateStart)
             selectedDateStart.setHours(0, 0, 0, 0);
+            console.log(selectedDateStart)
             const selectedDateEnd = new Date(selectedDate);
             selectedDateEnd.setHours(23, 59, 59, 999);
+            console.log(selectedDate)
             return photoDate >= selectedDateStart && photoDate <= selectedDateEnd;
         })
         .sort((a, b) => new Date(b.date) - new Date(a.date));
