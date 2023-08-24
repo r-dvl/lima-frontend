@@ -7,6 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function CatWatcher() {
+    // Photos
     const [photos, setPhotos] = useState([]);
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [currentPage, setCurrentPage] = useState(1);
@@ -45,20 +46,20 @@ function CatWatcher() {
 
     return (
         <div className="container">
-            {/* Calendar */}
-            <div className="filters">
+            {/* Controls */}
+            <div className="controls">
                 <DatePicker
                     selected={selectedDate}
                     onChange={date => setSelectedDate(date)}
                     dateFormat="yyyy-MM-dd"
-                    placeholderText="Selecciona una fecha"
+                    placeholderText="Select a date"
                 />
             </div>
 
             {/* Photos */}
             <div className="photo-list">
                 {photosToShow.map(photo => (
-                    <Paper key={photo.id} elevation={3} className="photo-item">
+                    <Paper key={photo.date} elevation={3} className="photo-item">
                         <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
                         <p>{new Date(photo.date).toLocaleString()}</p>
                     </Paper>

@@ -53,8 +53,22 @@
     height: auto;
 }
 
-.filters {
-    margin-top: 70px;
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;}
+
+.camera-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
 }
 
 .container {
