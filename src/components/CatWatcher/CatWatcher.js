@@ -14,7 +14,7 @@ function CatWatcher() {
 
     // Get Photos from server
     useEffect(() => {
-        fetch('/photos')
+        fetch(`/photos/date/${selectedDate}`)
             .then(response => response.json())
             .then(photosData => {
                 setPhotos(photosData);
