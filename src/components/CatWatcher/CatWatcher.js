@@ -7,7 +7,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function CatWatcher() {
-    // Convert date picker time to yyyy-mm-dd (Revisar, puto datepicker)
+    // Convert date picker time to yyyy-mm-dd
     function convertToYyyMmDd(dateString) {
         const date = new Date(dateString);
 
@@ -25,11 +25,11 @@ function CatWatcher() {
     const [currentPage, setCurrentPage] = useState(1);
     const photosPerPage = 9;
 
-    // Transform date from datepicker to Api date
-    const apiDate = convertToYyyMmDd(selectedDate)
-
     // Get Photos from server
     useEffect(() => {
+        // Transform date from datepicker to Api date
+        const apiDate = convertToYyyMmDd(selectedDate)
+
         fetch(`/photos/date/${apiDate}`)
             .then(response => response.json())
             .then(photosData => {
@@ -38,7 +38,7 @@ function CatWatcher() {
             .catch(error => {
                 console.error('Error fetching photos:', error);
             });
-    }, []);
+    }, [selectedDate]);
 
     // Filter Photos by date and time
     const filteredAndSortedPhotos = photos
