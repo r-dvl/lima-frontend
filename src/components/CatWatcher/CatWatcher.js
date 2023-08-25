@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './CatWatcher.css';
 import { Paper, Button } from '@mui/material';
+import { DeleteOutline as DeleteOutlineIcon } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import axios from 'axios';
 
 function CatWatcher() {
     // Convert date picker time to yyyy-mm-dd
@@ -28,7 +30,7 @@ function CatWatcher() {
     // Get Photos from server
     useEffect(() => {
         // Transform date from datepicker to Api date
-        const apiDate = convertToYyyMmDd(selectedDate)
+        const apiDate = convertToYyyMmDd(selectedDate);
 
         fetch(`/photos/date/${apiDate}`)
             .then(response => response.json())
@@ -38,21 +40,18 @@ function CatWatcher() {
             .catch(error => {
                 console.error('Error fetching photos:', error);
             });
-    }, [selectedDate]);
+    }, [selectedDate, photos]); // Include 'photos' in the dependency array
+
 
     // Filter Photos by date and time
     const filteredAndSortedPhotos = photos
         .filter(photo => {
             if (!selectedDate) return true;
             const photoDate = new Date(photo.date);
-            console.log(photoDate)
             const selectedDateStart = new Date(selectedDate);
-            console.log(selectedDateStart)
             selectedDateStart.setHours(0, 0, 0, 0);
-            console.log(selectedDateStart)
             const selectedDateEnd = new Date(selectedDate);
             selectedDateEnd.setHours(23, 59, 59, 999);
-            console.log(selectedDate)
             return photoDate >= selectedDateStart && photoDate <= selectedDateEnd;
         })
         .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -62,6 +61,19 @@ function CatWatcher() {
     const indexOfFirstPhoto = indexOfLastPhoto - photosPerPage;
     const photosToShow = filteredAndSortedPhotos.slice(indexOfFirstPhoto, indexOfLastPhoto);
     const totalPages = Math.ceil(filteredAndSortedPhotos.length / photosPerPage);
+
+    // Delete photos
+    const handleDelete = (id) => {
+        axios.delete(`/photos/${id}`)
+            .then(response => {
+                console.log(response.data.message);
+                setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
+            })
+            .catch(error => {
+                console.error('Error deleting photo:', error);
+            });
+    };
+
 
     return (
         <div className="container">
@@ -81,6 +93,21 @@ function CatWatcher() {
                     <Paper key={photo.date} elevation={3} className="photo-item">
                         <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
                         <p>{new Date(photo.date).toLocaleString()}</p>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => handleDelete(photo._id)}
+                            style={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: 'fit-content',
+                                padding: '0',
+                                margin: '0 auto',
+                            }}
+                        >
+                            <DeleteOutlineIcon style={{ fontSize: '24px' }} />
+                        </Button>
                     </Paper>
                 ))}
             </div>
