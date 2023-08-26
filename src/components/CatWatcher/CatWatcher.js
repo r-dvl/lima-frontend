@@ -74,7 +74,6 @@ function CatWatcher() {
             });
     };
 
-
     return (
         <div className="container">
             {/* Controls */}

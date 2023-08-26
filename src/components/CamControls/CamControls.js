@@ -4,10 +4,12 @@ import MenuItem from '@mui/material/MenuItem';
 import { OnButton, OffButton } from '../Buttons/Buttons';
 import axios from 'axios';
 
-function CamMenu({ anchorEl, onClose }) {
+function CamControls({ anchorEl, onClose }) {
     // ON/OFF Buttons
     const [status, setStatus] = useState('');
     const [host, setHost] = useState('');
+
+    // Hardcoded version to run
     const version = '1.0.4';
 
     const handleButtonClick = (newStatus, newHost) => {
@@ -59,4 +61,4 @@ function CamMenu({ anchorEl, onClose }) {
     );
 }
 
-export default CamMenu;
+export default CamControls;
