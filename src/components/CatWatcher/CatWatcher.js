@@ -7,6 +7,9 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import CamControls from "../CamControls/CamControls";
 
 function CatWatcher() {
     // Convert date picker time to yyyy-mm-dd
@@ -74,13 +77,29 @@ function CatWatcher() {
             });
     };
 
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    const handleMenuClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <div className="container">
             {/* Controls */}
             <div className="controls">
+                <div className="horizontal-elements">
+                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMenuClick}>
+                        <MenuIcon />
+                    </IconButton>
+                    <CamControls anchorEl={anchorEl} onClose={handleMenuClose} />
+                </div>
                 <DatePicker
                     selected={selectedDate}
-                    onChange={date => setSelectedDate(date)}
+                    onChange={(date) => setSelectedDate(date)}
                     dateFormat="yyyy-MM-dd"
                     placeholderText="Select a date"
                 />

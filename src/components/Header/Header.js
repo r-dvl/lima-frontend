@@ -1,23 +1,17 @@
-import React, { useState } from 'react';import './Header.css';
+import React from 'react';import './Header.css';
+import { Link } from 'react-router-dom';
 import Logo from "../../logo.svg";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
-import CamControls from "../CamControls/CamControls";
+import Button from '@mui/material/Button';
+import LoginButton from "../Auth/LoginButton";
+import LogoutButton from "../Auth/LogoutButton";
 
 function Header() {
-    const [anchorEl, setAnchorEl] = useState(null);
+    const token = localStorage.getItem('token');
 
-    const handleMenuClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleMenuClose = () => {
-        setAnchorEl(null);
-    };
 
     return (
         <AppBar position="fixed" className="topNav">
@@ -26,13 +20,15 @@ function Header() {
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
                         <img src={Logo} alt="Logo" style={{ width: '40px', marginRight: '10px' }} />
                         <Typography variant="h6">Lima</Typography>
+                        <div className="vertical-bar" />
+                        <Button color="inherit" component={Link} to="/">Home</Button>
+                        <div className="vertical-bar" />
+                        <Button color="inherit" component={Link} to="/cat-watcher">Cat Watcher</Button>
+                        <div className="vertical-bar" />
                     </Box>
-                    <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleMenuClick}>
-                        <MenuIcon />
-                    </IconButton>
+                    {token ? ( <LogoutButton /> ) : ( <LoginButton />)}
                 </Box>
             </Toolbar>
-            <CamControls anchorEl={anchorEl} onClose={handleMenuClose} />
         </AppBar>
     );
 }
