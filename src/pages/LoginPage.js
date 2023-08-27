@@ -1,13 +1,16 @@
 import React from 'react';
+import '../App.css';
 import Login from "../components/Auth/Login";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 function LoginPage() {
     return (
-        <div>
+        <div className='app-container'>
             <Header />
-            <Login />
+            <div className='content'>
+                <Login />
+            </div>
             <Footer />
         </div>
     )

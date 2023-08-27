@@ -1,12 +1,13 @@
 import React from 'react';
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
+import '../App.css';
 
 function HomePage() {
     return (
-        <div>
+        <div className="app-container">
             <Header />
-            <div>
+            <div className='content'>
                 <h1> HOME PAGE </h1>
             </div>
             <Footer />
