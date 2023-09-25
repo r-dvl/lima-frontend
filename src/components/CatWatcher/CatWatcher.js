@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import Checkbox from '@mui/material/Checkbox';
 import CamControls from "../CamControls/CamControls";
 
 function CatWatcher() {
@@ -29,6 +30,20 @@ function CatWatcher() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [currentPage, setCurrentPage] = useState(1);
     const photosPerPage = 9;
+
+    // Check Box
+    const handleCatCheckboxChange = (photoId, newCatValue) => {
+        axios.put(`/photos/updateCat/${photoId}`, {
+            newCatValue: newCatValue
+        })
+        .then(response => {
+            console.log(response.data.message);
+            // Actualizar el estado local si es necesario
+        })
+        .catch(error => {
+            console.error('Error updating cat value:', error);
+        });
+    };
 
     // Get Photos from server
     useEffect(() => {
@@ -126,6 +141,10 @@ function CatWatcher() {
                         >
                             <DeleteOutlineIcon style={{ fontSize: '24px' }} />
                         </Button>
+                        <Checkbox
+                            checked={photo.cat}
+                            onChange={() => handleCatCheckboxChange(photo._id, !photo.cat)}
+                        />
                     </Paper>
                 ))}
             </div>
