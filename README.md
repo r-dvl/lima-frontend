@@ -32,7 +32,6 @@ _React Front-End where my applications meet using [lima-backend](https://github.
 
 
 ## Apps
-### Cat Watcher
-___cat-watcher__ project is a motion detector I use when I'm away from home to spy on my cats, photos are posted in a MongoDB gathered with _lima-backend_ API and shown in this view._
-> [cat-watcher](https://github.com/R-dVL/cat-watcher)
+### [cat-watcher](https://github.com/R-dVL/cat-watcher)
+___cat-watcher__ project is a motion detector I use when I'm away from home to spy on my cats, photos are posted in a MongoDB gathered with _[lima-backend](https://github.com/R-dVL/lima-backend)_ API and shown in this view._
 
