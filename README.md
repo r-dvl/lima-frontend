@@ -1,5 +1,5 @@
 # Lima Frontend
-_React Front-End where my applications meet using [lima-backend](https://github.com/R-dVL/lima-backend) API._
+_React Front-End where my applications meet._
 
 
 ## Table of Contents
