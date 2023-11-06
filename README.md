@@ -5,6 +5,7 @@ _React Front-End where my applications meet using [lima-backend](https://github.
 ## Table of Contents
 1. [Dependencies](#Dependencies)
 2. [Project Structure](#Project%20Structure)
+3. [Apps](#Apps)
 
 
 ## Project Structure
