@@ -10,7 +10,7 @@ function CamControls({ anchorEl, onClose }) {
     const [host, setHost] = useState('');
 
     // Hardcoded version to run
-    const version = '1.0.4';
+    const version = '1.0.5';
 
     const handleButtonClick = (newStatus, newHost) => {
         setStatus(newStatus);
