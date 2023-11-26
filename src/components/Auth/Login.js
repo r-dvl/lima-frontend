@@ -31,7 +31,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post('/auth/login', { email, password });
+            const response = await axios.post(`${process.env.API_URL}/auth/login`, { email, password });
             const token = response.data.token;
 
             localStorage.setItem('token', token);

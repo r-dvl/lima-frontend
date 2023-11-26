@@ -33,7 +33,7 @@ function CatWatcher() {
 
     // Check Box
     const handleCatCheckboxChange = (photoId, newCatValue) => {
-        axios.put(`/photos/updateCat/${photoId}`, {
+        axios.put(`${process.env.API_URL}/photos/updateCat/${photoId}`, {
             newCatValue: newCatValue
         })
         .then(response => {
@@ -50,7 +50,7 @@ function CatWatcher() {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
 
-        fetch(`/photos/date/${apiDate}`)
+        fetch(`${process.env.API_URL}/photos/date/${apiDate}`)
             .then(response => response.json())
             .then(photosData => {
                 setPhotos(photosData);
@@ -82,7 +82,7 @@ function CatWatcher() {
 
     // Delete photos
     const handleDelete = (id) => {
-        axios.delete(`/photos/${id}`)
+        axios.delete(`${process.env.API_URL}/photos/${id}`)
             .then(response => {
                 console.log(response.data.message);
                 setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
