@@ -1,5 +1,10 @@
+import '../../App.css';
+import './CatWatcher.css'
+import Header from "../../components/Header/Header";
+import CamControls from "../../components/CamControls/CamControls";
+import Footer from "../../components/Footer/Footer";
+
 import React, { useEffect, useState } from 'react';
-import './CatWatcher.css';
 import { Paper, Button } from '@mui/material';
 import { DeleteOutline as DeleteOutlineIcon } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -10,7 +15,7 @@ import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Checkbox from '@mui/material/Checkbox';
-import CamControls from "../CamControls/CamControls";
+
 
 function CatWatcher() {
     // Convert date picker time to yyyy-mm-dd
@@ -103,77 +108,82 @@ function CatWatcher() {
     };
 
     return (
-        <div className="container">
-            {/* Controls */}
-            <div className="controls">
-                <div className="horizontal-elements">
-                    <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMenuClick}>
-                        <MenuIcon />
-                    </IconButton>
-                    <CamControls anchorEl={anchorEl} onClose={handleMenuClose} />
+        <div className='app-container'>
+            <Header />
+            <div className='content'>
+                <CamControls />
+                {/* Controls */}
+                <div className="controls">
+                    <div className="horizontal-elements">
+                        <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMenuClick}>
+                            <MenuIcon />
+                        </IconButton>
+                        <CamControls anchorEl={anchorEl} onClose={handleMenuClose} />
+                    </div>
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={(date) => setSelectedDate(date)}
+                        dateFormat="yyyy-MM-dd"
+                        placeholderText="Select a date"
+                    />
                 </div>
-                <DatePicker
-                    selected={selectedDate}
-                    onChange={(date) => setSelectedDate(date)}
-                    dateFormat="yyyy-MM-dd"
-                    placeholderText="Select a date"
-                />
-            </div>
 
-            {/* Photos */}
-            <div className="photo-list">
-                {photosToShow.map(photo => (
-                    <Paper key={photo.date} elevation={3} className="photo-item">
-                        <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
-                        <p>{new Date(photo.date).toLocaleString()}</p>
-                        <Button
-                            variant="contained"
-                            color="secondary"
-                            onClick={() => handleDelete(photo._id)}
-                            style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                width: 'fit-content',
-                                padding: '0',
-                                margin: '0 auto',
-                            }}
-                        >
-                            <DeleteOutlineIcon style={{ fontSize: '24px' }} />
-                        </Button>
-                        <Checkbox
-                            checked={photo.cat}
-                            onChange={() => handleCatCheckboxChange(photo._id, !photo.cat)}
-                        />
-                    </Paper>
-                ))}
-            </div>
+                {/* Photos */}
+                <div className="photo-list">
+                    {photosToShow.map(photo => (
+                        <Paper key={photo.date} elevation={3} className="photo-item">
+                            <img src={`data:image/jpeg;base64,${photo.image}`} alt={`${photo.date}`} />
+                            <p>{new Date(photo.date).toLocaleString()}</p>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={() => handleDelete(photo._id)}
+                                style={{
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    width: 'fit-content',
+                                    padding: '0',
+                                    margin: '0 auto',
+                                }}
+                            >
+                                <DeleteOutlineIcon style={{ fontSize: '24px' }} />
+                            </Button>
+                            <Checkbox
+                                checked={photo.cat}
+                                onChange={() => handleCatCheckboxChange(photo._id, !photo.cat)}
+                            />
+                        </Paper>
+                    ))}
+                </div>
 
-            {/* Pagination */}
-            <div className="pagination">
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setCurrentPage(currentPage - 1)}
-                    disabled={currentPage === 1}
-                    style={{ marginRight: '10px' }}
-                >
-                    <ArrowBackIcon />
-                </Button>
-                <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() => setCurrentPage(currentPage + 1)}
-                    disabled={indexOfLastPhoto >= filteredAndSortedPhotos.length}
-                >
-                    <ArrowForwardIcon />
-                </Button>
-                <p style={{ marginLeft: '10px' }}>
-                    Page {currentPage} of {totalPages}
-                </p>
+                {/* Pagination */}
+                <div className="pagination">
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        disabled={currentPage === 1}
+                        style={{ marginRight: '10px' }}
+                    >
+                        <ArrowBackIcon />
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        disabled={indexOfLastPhoto >= filteredAndSortedPhotos.length}
+                    >
+                        <ArrowForwardIcon />
+                    </Button>
+                    <p style={{ marginLeft: '10px' }}>
+                        Page {currentPage} of {totalPages}
+                    </p>
+                </div>
             </div>
+            <Footer />
         </div>
-    );
+    )
 }
 
 export default CatWatcher;
