@@ -1,9 +1,9 @@
 {
   "name": "lima-frontend",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "private": false,
   "repository": "https://github.com/R-dVL/lima-frontend.git",
-  "proxy": "http://localhost:3001",
+  "proxy": "http://192.168.1.55:3001",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/R-dVL"
   },
@@ -27,7 +27,7 @@
     "jwt-decode": "^3.1.2"
   },
   "scripts": {
-    "start": "PORT=3002 react-scripts start --host 0.0.0.0",
+    "start": "react-scripts start --host 0.0.0.0",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
