@@ -12,8 +12,6 @@ RUN npm run build
 
 RUN npm install -g serve
 
-ENV API_URL = 'http://localhost:3001'
-
 EXPOSE 3000
 
 CMD ["serve", "-s", "build"]
