@@ -8,15 +8,56 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 import Header from "../../components/Header/Header";
-import CamControls from "../../components/CamControls/CamControls";
 import Footer from "../../components/Footer/Footer";
+import { OnButton, OffButton } from '../../components/Buttons/Buttons';
 
 import '../../App.css';
 import './CatWatcher.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
+function CamControls({ anchorEl, onClose }) {
+    // ON/OFF Buttons
+    // eslint-disable-next-line
+    const [status, setStatus] = useState('');
+
+    const handleButtonClick = (newStatus) => {
+        setStatus(newStatus);
+
+        // HTTP Request to turn ON/OFF
+        const url = `http://rdvl-server:3001/scripts/scripts/cat-watcher/${newStatus}`;
+
+        axios.post(url)
+            .then(response => {
+                console.log('Request sent:', response.data);
+            })
+            .catch(error => {
+                console.error('Request error:', error);
+            });
+    };
+
+    return (
+        <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={onClose}
+        >
+            <MenuItem onClick={onClose}>
+                <div className="camera-group">
+                    <h4>Camera</h4>
+                    <div className="button-group">
+                        <OnButton onClick={() => handleButtonClick('on', 'server')} />
+                        <OffButton onClick={() => handleButtonClick('off', 'server')} />
+                    </div>
+                </div>
+            </MenuItem>
+        </Menu>
+    );
+}
 
 function CatWatcher() {
     // Convert date picker time to yyyy-mm-dd
@@ -98,7 +139,6 @@ function CatWatcher() {
         <div className='app-container'>
             <Header />
             <div className='content'>
-                <CamControls />
                 {/* Controls */}
                 <div className="controls">
                     <div className="horizontal-elements">
