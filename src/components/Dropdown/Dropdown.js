@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button, Collapse } from '@mui/material';
 
 import './Dropdown.css'
 
@@ -11,16 +12,20 @@ const Dropdown = ({ title, children }) => {
   };
 
   return (
-    <div>
-      <div onClick={toggleDropdown}>
-        <span>{title}</span>
-        {isOpen ? ' ▲' : ' ▼'}
-      </div>
-      {isOpen && (
+    <div className="dropdown-container">
+      <Button
+        onClick={toggleDropdown}
+        variant="contained"
+        color="primary"
+        className="dropdown-button"
+      >
+        {title}
+      </Button>
+      <Collapse in={isOpen}>
         <div style={{ border: '1px solid #ccc', padding: '10px' }}>
           {children}
         </div>
-      )}
+      </Collapse>
     </div>
   );
 };
