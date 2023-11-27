@@ -2,12 +2,29 @@ import React, { useRef, useEffect, useCallback, useMemo, useState } from 'react'
 import Header from "../../components/Header/Header";
 import CustomCarousel from '../../components/CustomCarousel/CustomCarousel'
 import ContactCard from "../../components/ContactCard/ContactCard";
-import ScrollBar from "../../components/ScrollBar/ScrollBar";
 
 import { TypeAnimation } from "react-type-animation";
 
 import '../../App.css';
 import './Home.css';
+
+
+function ScrollBar({ sections, currentSectionIndex, scrollToSection, setCurrentSection }) {
+    return (
+        <div className='scrollbar'>
+            {sections.map((section, index) => (
+                <div
+                    key={section}
+                    className={`scrollbar-item ${currentSectionIndex === index ? 'active' : ''}`}
+                    onClick={() => {
+                        scrollToSection(index);
+                        setCurrentSection(index);
+                    }}
+                ></div>
+            ))}
+        </div>
+    );
+}
 
 function Home() {
     //// SECTIONS ////

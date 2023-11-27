@@ -57,3 +57,32 @@ body {
     align-items: center;
     height: 100%;
 }
+
+.scrollbar {
+    position: fixed;
+    right: 10px;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.scrollbar-item {
+    width: 10px;
+    height: 30px;
+    background-color: #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.scrollbar-item.active {
+    background-color: #88e3c8;
+}
+
+.scrollbar-item.active:nth-child(2) {
+    background-color: #eee190;
+}
