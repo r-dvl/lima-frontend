@@ -28,7 +28,8 @@ const MyButton = styled(Button)(({ theme }) => ({
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory(); // Inicializa useHistory
+    const history = useHistory();
+    const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -43,6 +44,7 @@ const Login = () => {
             history.push('/');
         } catch (error) {
             console.error('Login error:', error);
+            setError('Usuario o contraseña incorrectos');
         }
     };
 
@@ -83,6 +85,11 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
+                            {error && (
+                                <Typography variant="body2" color="error">
+                                    {error}
+                                </Typography>
+                            )}
                             <MyButton
                                 type="submit"
                                 fullWidth
