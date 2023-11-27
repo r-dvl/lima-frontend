@@ -15,7 +15,7 @@ function Footer() {
             <Typography variant="body2" align="center">
                 © 2023 Lima. WebApp by R-dVL.
             </Typography>
-            <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', marginTop: '10px', height: "100%"}}>
+            <div style={{ display: 'flex', alignItems: "center", justifyContent: 'center', marginTop: '10px', height: "100%" }}>
                 <IconButton onClick={() => openSocialMediaProfile('https://www.linkedin.com/in/r-dvl/')}>
                     <LinkedIn />
                 </IconButton>

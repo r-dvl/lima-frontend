@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+.home {
+    font-family: "Lucida Console", serif;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.section {
+    min-height: 100vh;
+    min-width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.type-animation {
+    font-size: 24px;
+}
+
+.type-animation-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.projects-container {
+    margin-top: 50px;
+    /* background-image: url('../../../public/placeHolder.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}

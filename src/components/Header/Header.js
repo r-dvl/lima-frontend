@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import Logo from "../../logo.svg";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import LoginButton from "../Auth/LoginButton";
@@ -19,15 +18,15 @@ function Header() {
             <Toolbar>
                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <img src={Logo} alt="Logo" style={{ width: '40px', marginRight: '10px' }} />
-                        <Typography variant="h6">Lima</Typography>
-                        <div className="vertical-bar" />
-                        <Button color="inherit" component={Link} to="/">Home</Button>
+                        <Button color="inherit" component={Link} to="/" sx={{ fontWeight: 500, fontSize: '1.25rem', textTransform: 'capitalize' }}>
+                            <img src={Logo} alt="Logo" style={{ width: '40px', marginRight: '10px' }} />
+                            Lima
+                        </Button>
                         <div className="vertical-bar" />
                         <Button color="inherit" component={Link} to="/cat-watcher">Cat Watcher</Button>
                         <div className="vertical-bar" />
                     </Box>
-                    {token ? ( <LogoutButton /> ) : ( <LoginButton />)}
+                    {token ? (<LogoutButton />) : (<LoginButton />)}
                 </Box>
             </Toolbar>
         </AppBar>

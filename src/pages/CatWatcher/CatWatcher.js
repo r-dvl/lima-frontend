@@ -1,20 +1,21 @@
-import '../../App.css';
-import './CatWatcher.css'
-import Header from "../../components/Header/Header";
-import CamControls from "../../components/CamControls/CamControls";
-import Footer from "../../components/Footer/Footer";
-
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
+
 import { Paper, Button } from '@mui/material';
 import { DeleteOutline as DeleteOutlineIcon } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import axios from 'axios';
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import Checkbox from '@mui/material/Checkbox';
+
+import Header from "../../components/Header/Header";
+import CamControls from "../../components/CamControls/CamControls";
+import Footer from "../../components/Footer/Footer";
+
+import '../../App.css';
+import './CatWatcher.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 function CatWatcher() {
@@ -35,20 +36,6 @@ function CatWatcher() {
     const [selectedDate, setSelectedDate] = useState(new Date());
     const [currentPage, setCurrentPage] = useState(1);
     const photosPerPage = 9;
-
-    // Check Box
-    const handleCatCheckboxChange = (photoId, newCatValue) => {
-        axios.put(`http://rdvl-server:3001/photos/updateCat/${photoId}`, {
-            newCatValue: newCatValue
-        })
-        .then(response => {
-            console.log(response.data.message);
-            // Actualizar el estado local si es necesario
-        })
-        .catch(error => {
-            console.error('Error updating cat value:', error);
-        });
-    };
 
     // Get Photos from server
     useEffect(() => {
@@ -149,37 +136,39 @@ function CatWatcher() {
                             >
                                 <DeleteOutlineIcon style={{ fontSize: '24px' }} />
                             </Button>
-                            <Checkbox
-                                checked={photo.cat}
-                                onChange={() => handleCatCheckboxChange(photo._id, !photo.cat)}
-                            />
                         </Paper>
                     ))}
                 </div>
 
                 {/* Pagination */}
-                <div className="pagination">
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        style={{ marginRight: '10px' }}
-                    >
-                        <ArrowBackIcon />
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={indexOfLastPhoto >= filteredAndSortedPhotos.length}
-                    >
-                        <ArrowForwardIcon />
-                    </Button>
-                    <p style={{ marginLeft: '10px' }}>
-                        Page {currentPage} of {totalPages}
-                    </p>
-                </div>
+                {photosToShow.length > 0 ? (
+                    <>
+                        <div className="pagination">
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => setCurrentPage(currentPage - 1)}
+                                disabled={currentPage === 1}
+                                style={{ marginRight: '10px' }}
+                            >
+                                <ArrowBackIcon />
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => setCurrentPage(currentPage + 1)}
+                                disabled={indexOfLastPhoto >= filteredAndSortedPhotos.length}
+                            >
+                                <ArrowForwardIcon />
+                            </Button>
+                        </div>
+                        <p style={{ textAlign: 'center' }}>
+                            Page {currentPage} of {totalPages}
+                        </p>
+                    </>
+                ) : (
+                    <p style={{ textAlign: 'center' }}>🐈 Los gatis andan dormidos 🐈‍⬛</p>
+                )}
             </div>
             <Footer />
         </div>
