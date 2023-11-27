@@ -8,6 +8,6 @@
 .vertical-bar {
     width: 1px;
     height: 20px; /* Altura de la barra vertical */
-    background-color: rgba(0, 0, 0, 0.2); /* Color de la barra vertical */
+    background-color: rgba(114, 114, 114, 0.801); /* Color de la barra vertical */
     margin: 0 10px; /* Espacio entre el logo/texto y la barra */
 }

@@ -10,7 +10,7 @@ function ContactCard() {
             </div>
             <div className="contact-divider"></div>
             <div className="contact-social">
-                <h2>Follow me!</h2>
+                <h2>Follow me 👋</h2>
                 <a href="https://www.instagram.com/rastdelvalle/" target="_blank" rel="noopener noreferrer">
                     <img src='/instagram.svg' alt="Instagram Logo" />Instagram</a>
                 <a href="https://github.com/R-dVL" target="_blank" rel="noopener noreferrer">

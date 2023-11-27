@@ -119,10 +119,12 @@ function Home() {
                             <div className='carousel-container'>
                                 <CustomCarousel>
                                     <div>
-                                        <h1>TODO: Cat Watcher</h1>
+                                        <h1>Cat Watcher</h1>
+                                        <p>App made to spy on my cats...</p>
                                     </div>
                                     <div>
-                                        <h1>TODO: Automation</h1>
+                                        <h1>Automation</h1>
+                                        <p>All my CI/CD is done with a Jenkins Shared Library, Ansible and Docker.</p>
                                     </div>
                                 </CustomCarousel>
                             </div>
