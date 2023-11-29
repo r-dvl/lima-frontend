@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    image: ghcr.io/r-dvl/lima-frontend:latest
+    container_name: lima-frontend
+    restart: unless-stopped
+    build:
+      context: .
+      args:
+        API_URL: http://rdvl-server:3001
+    ports:
+      - '3000:3000'

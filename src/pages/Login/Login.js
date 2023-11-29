@@ -7,6 +7,7 @@ import { TextField, Button, Container, Paper, Typography, CssBaseline } from '@m
 import { styled } from '@mui/system';
 import { useHistory } from 'react-router-dom';
 
+
 const MyPaper = styled(Paper)(() => ({
     marginTop: '25%',
     marginBottom: '25%',
@@ -35,7 +36,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://rdvl-server:3001/auth/login`, { email, password });
+            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
             const token = response.data.token;
 
             localStorage.setItem('token', token);

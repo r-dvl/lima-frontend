@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import DatePicker from 'react-datepicker';
 
+import DatePicker from 'react-datepicker';
 import { Paper, Button } from '@mui/material';
 import { DeleteOutline as DeleteOutlineIcon } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -29,7 +29,7 @@ function CamControls({ anchorEl, onClose }) {
         setStatus(newStatus);
 
         // HTTP Request to turn ON/OFF
-        const url = `http://rdvl-server:3001/scripts/scripts/cat-watcher/${newStatus}`;
+        const url = `${process.env.REACT_APP_API_URL}/scripts/cat-watcher/${newStatus}`;
 
         axios.post(url)
             .then(response => {
@@ -83,7 +83,7 @@ function CatWatcher() {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
 
-        fetch(`http://rdvl-server:3001/photos/date/${apiDate}`)
+        fetch(`${process.env.REACT_APP_API_URL}/photos/date/${apiDate}`)
             .then(response => response.json())
             .then(photosData => {
                 setPhotos(photosData);
@@ -115,7 +115,7 @@ function CatWatcher() {
 
     // Delete photos
     const handleDelete = (id) => {
-        axios.delete(`http://rdvl-server:3001/photos/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/photos/${id}`)
             .then(response => {
                 console.log(response.data.message);
                 setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
