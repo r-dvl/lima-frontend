@@ -44,7 +44,7 @@ const Login = () => {
             // Redirige al usuario a la página de inicio
             history.push('/');
         } catch (error) {
-            console.error('Login error:', error);
+            console.error('Login error.');
             setError('Usuario o contraseña incorrectos');
         }
     };

@@ -32,12 +32,12 @@ function CamControls({ anchorEl, onClose }) {
         const url = `${process.env.REACT_APP_API_URL}/scripts/cat-watcher/${newStatus}`;
 
         axios.post(url)
-            .then(response => {
-                console.log('Request sent:', response.data);
-            })
-            .catch(error => {
-                console.error('Request error:', error);
-            });
+        .then(response => {
+            console.log('Request sent');
+        })
+        .catch(error => {
+            console.error('Request error');
+        });
     };
 
     return (
@@ -89,7 +89,7 @@ function CatWatcher() {
                 setPhotos(photosData);
             })
             .catch(error => {
-                console.error('Error fetching photos:', error);
+                console.error('Error fetching photos');
             });
     }, [selectedDate, photos]); // Include 'photos' in the dependency array
 
@@ -117,11 +117,11 @@ function CatWatcher() {
     const handleDelete = (id) => {
         axios.delete(`${process.env.REACT_APP_API_URL}/photos/${id}`)
             .then(response => {
-                console.log(response.data.message);
+                console.log('Photo deleted.');
                 setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
             })
             .catch(error => {
-                console.error('Error deleting photo:', error);
+                console.error('Error deleting photo.');
             });
     };
 

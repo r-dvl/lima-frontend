@@ -10,7 +10,7 @@ function User() {
             const decodedToken = jwtDecode(token);
             return decodedToken;
         } catch (error) {
-            console.error('Decode error', error);
+            console.error('Decode error');
             return null;
         }
     };
