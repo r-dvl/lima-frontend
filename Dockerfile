@@ -3,7 +3,7 @@ FROM node:14-alpine
 WORKDIR /app
 
 # To override ENV var in react this is the workaround
-ARG API_URL
+ARG API_URL=https://r-dvl.site/api
 
 ENV REACT_APP_API_URL $API_URL
 
