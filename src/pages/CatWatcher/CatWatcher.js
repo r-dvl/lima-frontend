@@ -20,6 +20,8 @@ import './CatWatcher.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
+const token = localStorage.getItem('token');
+
 function CamControls({ anchorEl, onClose }) {
     // ON/OFF Buttons
     // eslint-disable-next-line
@@ -31,7 +33,7 @@ function CamControls({ anchorEl, onClose }) {
         // HTTP Request to turn ON/OFF
         const url = `${process.env.REACT_APP_API_URL}/scripts/cat-watcher/${newStatus}`;
 
-        axios.post(url)
+        axios.post(url, {}, { headers: { Authorization: `Bearer ${token}` } })
         .then(response => {
             console.log('Request sent');
         })
@@ -83,7 +85,11 @@ function CatWatcher() {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
 
-        fetch(`${process.env.REACT_APP_API_URL}/photos/date/${apiDate}`)
+        fetch(`${process.env.REACT_APP_API_URL}/photos/date/${apiDate}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
             .then(response => response.json())
             .then(photosData => {
                 setPhotos(photosData);
@@ -115,7 +121,11 @@ function CatWatcher() {
 
     // Delete photos
     const handleDelete = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/photos/${id}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/photos/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
             .then(response => {
                 console.log('Photo deleted.');
                 setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
