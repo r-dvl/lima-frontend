@@ -20,7 +20,6 @@ import './CatWatcher.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-const token = localStorage.getItem('token');
 const apiUrl = process.env.REACT_APP_API_URL
 
 function CamControls({ anchorEl, onClose }) {
@@ -33,14 +32,19 @@ function CamControls({ anchorEl, onClose }) {
 
         // HTTP Request to turn ON/OFF
         const url = `${apiUrl}/scripts/cat-watcher/${newStatus}`;
+        const token = localStorage.getItem('token');
 
-        axios.post(url, {}, { headers: { Authorization: token } })
-        .then(response => {
-            console.log('Request sent', response);
+        axios.post(url, {}, {
+            headers: {
+                Authorization: token
+            }
         })
-        .catch(error => {
-            console.error('Request error', error);
-        });
+            .then(response => {
+                console.log('Request sent', response);
+            })
+            .catch(error => {
+                console.error('Request error', error);
+            });
     };
 
     return (
@@ -85,6 +89,8 @@ function CatWatcher() {
     useEffect(() => {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
+        const token = localStorage.getItem('token');
+
         axios.get(`${apiUrl}/photos/date/${apiDate}`, {
             headers: {
                 Authorization: token,
@@ -121,6 +127,8 @@ function CatWatcher() {
 
     // Delete photos
     const handleDelete = (id) => {
+        const token = localStorage.getItem('token');
+
         axios.delete(`${apiUrl}/photos/${id}`, {
             headers: {
                 Authorization: token,
