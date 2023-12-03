@@ -21,6 +21,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 const token = localStorage.getItem('token');
+const apiUrl = process.env.REACT_APP_API_URL
 
 function CamControls({ anchorEl, onClose }) {
     // ON/OFF Buttons
@@ -31,9 +32,9 @@ function CamControls({ anchorEl, onClose }) {
         setStatus(newStatus);
 
         // HTTP Request to turn ON/OFF
-        const url = `${process.env.REACT_APP_API_URL}/scripts/cat-watcher/${newStatus}`;
+        const url = `${apiUrl}/scripts/cat-watcher/${newStatus}`;
 
-        axios.post(url, {}, { headers: { Authorization: `Bearer ${token}` } })
+        axios.post(url, {}, { headers: { Authorization: `${token}` } })
         .then(response => {
             console.log('Request sent');
         })
@@ -81,23 +82,23 @@ function CatWatcher() {
     const photosPerPage = 9;
 
     // Get Photos from server
+    // Get Photos from server
     useEffect(() => {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
-
-        fetch(`${process.env.REACT_APP_API_URL}/photos/date/${apiDate}`, {
+    
+        axios.get(`${apiUrl}/photos/date/${apiDate}`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `${token}`,
             },
         })
-            .then(response => response.json())
-            .then(photosData => {
-                setPhotos(photosData);
+            .then(response => {
+                setPhotos(response.data);
             })
             .catch(error => {
-                console.error('Error fetching photos');
+                console.error('Error fetching photos', error);
             });
-    }, [selectedDate, photos]); // Include 'photos' in the dependency array
+    }, [selectedDate]);
 
 
     // Filter Photos by date and time
@@ -121,9 +122,9 @@ function CatWatcher() {
 
     // Delete photos
     const handleDelete = (id) => {
-        axios.delete(`${process.env.REACT_APP_API_URL}/photos/${id}`, {
+        axios.delete(`${apiUrl}/photos/${id}`, {
             headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `${token}`,
             },
         })
             .then(response => {
