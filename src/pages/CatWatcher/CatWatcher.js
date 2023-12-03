@@ -34,12 +34,12 @@ function CamControls({ anchorEl, onClose }) {
         // HTTP Request to turn ON/OFF
         const url = `${apiUrl}/scripts/cat-watcher/${newStatus}`;
 
-        axios.post(url, {}, { headers: { Authorization: `${token}` } })
+        axios.post(url, {}, { headers: { Authorization: token } })
         .then(response => {
-            console.log('Request sent');
+            console.log('Request sent', response);
         })
         .catch(error => {
-            console.error('Request error');
+            console.error('Request error', error);
         });
     };
 
@@ -82,17 +82,16 @@ function CatWatcher() {
     const photosPerPage = 9;
 
     // Get Photos from server
-    // Get Photos from server
     useEffect(() => {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
-    
         axios.get(`${apiUrl}/photos/date/${apiDate}`, {
             headers: {
-                Authorization: `${token}`,
+                Authorization: token,
             },
         })
             .then(response => {
+                console.log('Received photosData:', response.data);
                 setPhotos(response.data);
             })
             .catch(error => {
@@ -124,15 +123,15 @@ function CatWatcher() {
     const handleDelete = (id) => {
         axios.delete(`${apiUrl}/photos/${id}`, {
             headers: {
-                Authorization: `${token}`,
+                Authorization: token,
             },
         })
             .then(response => {
-                console.log('Photo deleted.');
+                console.log('Photo deleted', response);
                 setPhotos(photos.filter(photo => photo._id !== id)); // Update the state
             })
             .catch(error => {
-                console.error('Error deleting photo.');
+                console.error('Error deleting photo', error);
             });
     };
 

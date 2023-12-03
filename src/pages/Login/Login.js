@@ -8,6 +8,8 @@ import { styled } from '@mui/system';
 import { useHistory } from 'react-router-dom';
 
 
+const apiUrl = process.env.REACT_APP_API_URL
+
 const MyPaper = styled(Paper)(() => ({
     marginTop: '25%',
     marginBottom: '25%',
@@ -36,7 +38,7 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password });
+            const response = await axios.post(`${apiUrl}/auth/login`, { email, password });
             const token = response.data.token;
 
             localStorage.setItem('token', token);
@@ -44,7 +46,7 @@ const Login = () => {
             // Redirige al usuario a la página de inicio
             history.push('/');
         } catch (error) {
-            console.error('Login error.');
+            console.error('Login error', error);
             setError('Usuario o contraseña incorrectos');
         }
     };
