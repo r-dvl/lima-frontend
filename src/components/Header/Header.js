@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import Logo from "../../logo.svg";
@@ -9,9 +9,22 @@ import Button from '@mui/material/Button';
 import LoginButton from "../Auth/LoginButton";
 import LogoutButton from "../Auth/LogoutButton";
 
-function Header() {
-    const token = localStorage.getItem('token');
+import jwt_decode from 'jwt-decode';
 
+function Header() {
+    const [token, setToken] = useState(localStorage.getItem('token'));
+
+    useEffect(() => {
+        if (token) {
+            const decodedToken = jwt_decode(token);
+            const currentTime = Date.now() / 1000;
+
+            if (decodedToken.exp < currentTime) {
+                localStorage.removeItem('token');
+                setToken(null);
+            }
+        }
+    }, [token]);
 
     return (
         <AppBar position="fixed" className="topNav">

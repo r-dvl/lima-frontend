@@ -13,8 +13,8 @@ function App() {
         <Router>
             <Switch>
                 {/* Public Routes */}
-                <Route exact path="/" component={Home}/>
-                <Route path="/login" component={Login}/>
+                <Route exact path="/" component={Home} />
+                <Route path="/login" component={Login} />
 
                 {/* Private Routes */}
                 <PrivateRoute path="/cat-watcher" component={CatWatcher} />

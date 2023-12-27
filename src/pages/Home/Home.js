@@ -2,29 +2,13 @@ import React, { useRef, useEffect, useCallback, useMemo, useState } from 'react'
 import Header from "../../components/Header/Header";
 import CustomCarousel from '../../components/CustomCarousel/CustomCarousel'
 import ContactCard from "../../components/ContactCard/ContactCard";
+import ScrollBar from "../../components/ScrollBar/ScrollBar"
 
 import { TypeAnimation } from "react-type-animation";
 
 import '../../App.css';
 import './Home.css';
 
-
-function ScrollBar({ sections, currentSectionIndex, scrollToSection, setCurrentSection }) {
-    return (
-        <div className='scrollbar'>
-            {sections.map((section, index) => (
-                <div
-                    key={section}
-                    className={`scrollbar-item ${currentSectionIndex === index ? 'active' : ''}`}
-                    onClick={() => {
-                        scrollToSection(index);
-                        setCurrentSection(index);
-                    }}
-                ></div>
-            ))}
-        </div>
-    );
-}
 
 function Home() {
     //// SECTIONS ////
@@ -92,7 +76,7 @@ function Home() {
     }, [sections, scrollToSection]);
 
     return (
-        <div className="app-container">
+        <div className="app-container home">
             <Header />
             <div className='content'>
                 <div className='home' onWheel={handleWheel} style={{ backgroundColor }}>
@@ -136,12 +120,12 @@ function Home() {
                             <div className='carousel-container'>
                                 <CustomCarousel>
                                     <div>
-                                        <h1>Cat Watcher</h1>
-                                        <p>App made to spy on my cats...</p>
+                                        <h1>Coming soon...</h1>
+                                        <p>Page in construction</p>
                                     </div>
                                     <div>
-                                        <h1>Automation</h1>
-                                        <p>All my CI/CD is done with a Jenkins Shared Library, Ansible and Docker.</p>
+                                        <h1>Coming soon...</h1>
+                                        <p>Page in construction</p>
                                     </div>
                                 </CustomCarousel>
                             </div>
