@@ -14,8 +14,7 @@ import '../../App.css';
 import './CatWatcher.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-// const apiUrl = process.env.REACT_APP_API_URL
-const apiUrl = 'http://localhost:3001'
+const apiUrl = process.env.REACT_APP_API_URL
 
 function CatWatcher() {
     const [selectedDate, setSelectedDate] = useState(new Date());
