@@ -29,7 +29,7 @@ const MyButton = styled(Button)(({ theme }) => ({
 }));
 
 const Login = () => {
-    const [user, setUser] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
     const [error, setError] = useState('');
@@ -38,12 +38,11 @@ const Login = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`${apiUrl}/auth/login`, { user, password });
+            const response = await axios.post(`${apiUrl}/auth/login`, { username, password });
             const token = response.data.token;
 
             localStorage.setItem('token', token);
 
-            // Redirige al usuario a la página de inicio
             history.push('/');
         } catch (error) {
             console.error('Login error', error);
@@ -72,8 +71,8 @@ const Login = () => {
                                 name="user"
                                 autoComplete="user"
                                 autoFocus
-                                value={user}
-                                onChange={(e) => setUser(e.target.value)}
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                             <TextField
                                 variant="outlined"
