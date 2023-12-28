@@ -83,7 +83,6 @@ function CatWatcher() {
             });
     }, [selectedDate, currentPage]);
 
-
     // Delete photos
     const handleDelete = (id) => {
         const token = localStorage.getItem('token');
@@ -105,8 +104,8 @@ function CatWatcher() {
     // Start Cat Watcher
     const handleOn = () => {
         const token = localStorage.getItem('token');
-
-        axios.post(`${apiUrl}/docker/start/cat-watcher`, {
+    
+        axios.post(`${apiUrl}/docker/start/cat-watcher`, {}, {
             headers: {
                 Authorization: token,
             },
@@ -117,13 +116,13 @@ function CatWatcher() {
             .catch(error => {
                 console.error('Error starting Cat Watcher', error);
             });
-    };
+    };    
 
     // Stop Cat Watcher
     const handleOff = () => {
         const token = localStorage.getItem('token');
 
-        axios.post(`${apiUrl}/docker/stop/cat-watcher`, {
+        axios.post(`${apiUrl}/docker/stop/cat-watcher`, {},{
             headers: {
                 Authorization: token,
             },
