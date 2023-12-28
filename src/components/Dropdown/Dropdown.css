@@ -1,7 +1,17 @@
 .dropdown-container {
-    margin-top: 10px;
-  }
-  
-  .dropdown-button {
-    margin-bottom: 10px;
-  }
+  position: relative;
+  margin-right: 20px;
+}
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: white;
+}
+
+.dropdown-item {
+  margin-bottom: 10px;
+}

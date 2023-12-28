@@ -1,31 +1,54 @@
 import React, { useState } from 'react';
-import { Button, Collapse } from '@mui/material';
+import { Button, ClickAwayListener, Grow, Paper, Popper } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 import './Dropdown.css'
 
+const Dropdown = ({ children }) => {
+  const [open, setOpen] = useState(false);
+  const anchorRef = React.useRef(null);
 
-const Dropdown = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
 
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
     <div className="dropdown-container">
       <Button
-        onClick={toggleDropdown}
+        ref={anchorRef}
+        onClick={handleToggle}
         variant="contained"
-        color="primary"
+        style={{ backgroundColor: 'white' }}
         className="dropdown-button"
       >
-        {title}
+        <MenuIcon style={{ color: 'black' }} />
       </Button>
-      <Collapse in={isOpen}>
-        <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-          {children}
-        </div>
-      </Collapse>
+      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <div className="dropdown-menu">
+                  {React.Children.map(children, child => (
+                    <div className="dropdown-item">{child}</div>
+                  ))}
+                </div>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
     </div>
   );
 };

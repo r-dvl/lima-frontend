@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import DatePicker from 'react-datepicker';
-import { Paper, Button } from '@mui/material';
+import { Paper, Button, Typography } from '@mui/material';
 import { DeleteOutline as DeleteOutlineIcon } from '@mui/icons-material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import StatusPilot from '../../components/StatusPilot/StatusPilot';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 import '../../App.css';
 import './CatWatcher.css';
@@ -100,18 +102,96 @@ function CatWatcher() {
             });
     };
 
+    // Start Cat Watcher
+    const handleOn = () => {
+        const token = localStorage.getItem('token');
+
+        axios.post(`${apiUrl}/docker/start/cat-watcher`, {
+            headers: {
+                Authorization: token,
+            },
+        })
+            .then(response => {
+                console.log('Cat Watcher started: ', response);
+            })
+            .catch(error => {
+                console.error('Error starting Cat Watcher', error);
+            });
+    };
+
+    // Stop Cat Watcher
+    const handleOff = () => {
+        const token = localStorage.getItem('token');
+
+        axios.post(`${apiUrl}/docker/stop/cat-watcher`, {
+            headers: {
+                Authorization: token,
+            },
+        })
+            .then(response => {
+                console.log('Cat Watcher stopped: ', response);
+            })
+            .catch(error => {
+                console.error('Error stopping Cat Watcher', error);
+            });
+    };
+
+    // Cat Watcher status
+    const [appStatus, setAppStatus] = useState()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+
+        axios.get(`${apiUrl}/docker/status/cat-watcher`, {
+            headers: {
+                Authorization: token,
+            },
+        })
+            .then(response => {
+                console.log('Cat Watcher status: ', response.data);
+                setAppStatus(response.data);
+            })
+            .catch(error => {
+                console.error('Error receiving Cat Watcher status: ', error);
+                setAppStatus('error')
+            });
+    }, [selectedDate, currentPage]);
+
     return (
         <div className='app-container'>
             <Header />
             <div className='content'>
                 {/* Controls */}
                 <div className="controls">
+                    <StatusPilot
+                        title='Status'
+                        status={appStatus}
+                    />
                     <DatePicker
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date)}
                         dateFormat="yyyy-MM-dd"
                         placeholderText="Select a date"
                     />
+                    <Dropdown>
+                        <Typography variant="body1">Cat Watcher</Typography>
+                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={() => handleOn()}
+                            >
+                                ON
+                            </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => handleOff()}
+                            >
+                                OFF
+                            </Button>
+                        </div>
+                    </Dropdown>
                 </div>
 
                 {/* Photos */}
