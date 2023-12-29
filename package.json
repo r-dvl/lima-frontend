@@ -1,6 +1,6 @@
 {
   "name": "lima-frontend",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "private": false,
   "repository": "https://github.com/r-dvl/lima-frontend.git",
   "proxy": "http://localhost:3001",
