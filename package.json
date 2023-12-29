@@ -1,8 +1,8 @@
 {
   "name": "lima-frontend",
-  "version": "1.6.2",
+  "version": "1.7.5",
   "private": false,
-  "repository": "https://github.com/R-dVL/lima-frontend.git",
+  "repository": "https://github.com/r-dvl/lima-frontend.git",
   "proxy": "http://localhost:3001",
   "dependencies": {
     "react": "^18.2.0",
