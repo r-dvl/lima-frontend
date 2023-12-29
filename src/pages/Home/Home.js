@@ -95,7 +95,7 @@ function Home() {
                                     1000,
                                     'Its me,',
                                     200,
-                                    'R-dVL.',
+                                    'r-dvl.',
                                     1000,
                                     'Wops..',
                                     200,
@@ -103,7 +103,7 @@ function Home() {
                                     1000,
                                     'I am Software Engineer.',
                                     1000,
-                                    'And this is my portfolio!',
+                                    'And this is my website!',
                                     1000,
                                 ]}
                                     wrapper="span"
