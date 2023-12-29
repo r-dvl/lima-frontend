@@ -40,13 +40,16 @@ function CatWatcher() {
     useEffect(() => {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
-        const token = localStorage.getItem('token');
 
-        axios.get(`${apiUrl}/photos/count/${apiDate}`, {
-            headers: {
-                Authorization: token,
-            },
-        })
+        const token = localStorage.getItem('token');
+    
+        // Define la función que actualiza el número de fotos
+        const updatePhotosNumber = () => {
+            axios.get(`${apiUrl}/photos/count/${apiDate}`, {
+                headers: {
+                    Authorization: token,
+                },
+            })
             .then(response => {
                 console.log('Received count:', response.data);
                 setPhotosNumber(response.data);
@@ -54,6 +57,13 @@ function CatWatcher() {
             .catch(error => {
                 console.error('Error fetching count', error);
             });
+        }
+    
+        updatePhotosNumber();
+    
+        const intervalId = setInterval(updatePhotosNumber, 5000);
+    
+        return () => clearInterval(intervalId);
     }, [selectedDate]);
 
     // Pagination
@@ -67,20 +77,29 @@ function CatWatcher() {
     useEffect(() => {
         // Transform date from datepicker to Api date
         const apiDate = convertToYyyMmDd(selectedDate);
+
         const token = localStorage.getItem('token');
 
-        axios.get(`${apiUrl}/photos/date/${apiDate}/${currentPage}`, {
-            headers: {
-                Authorization: token,
-            },
-        })
-            .then(response => {
-                console.log('Received photosData:', response.data);
-                setPhotos(response.data);
+        const updatePhotos = () => {
+            axios.get(`${apiUrl}/photos/date/${apiDate}/${currentPage}`, {
+                headers: {
+                    Authorization: token,
+                },
             })
-            .catch(error => {
-                console.error('Error fetching photos', error);
-            });
+                .then(response => {
+                    console.log('Received photosData:', response.data);
+                    setPhotos(response.data);
+                })
+                .catch(error => {
+                    console.error('Error fetching photos', error);
+                });
+        }
+
+        updatePhotos();
+
+        const intervalId = setInterval(updatePhotos, 5000);
+
+        return () => clearInterval(intervalId);
     }, [selectedDate, currentPage]);
 
     // Delete photos
@@ -104,7 +123,7 @@ function CatWatcher() {
     // Start Cat Watcher
     const handleOn = () => {
         const token = localStorage.getItem('token');
-    
+
         axios.post(`${apiUrl}/docker/start/cat-watcher`, {}, {
             headers: {
                 Authorization: token,
@@ -116,13 +135,13 @@ function CatWatcher() {
             .catch(error => {
                 console.error('Error starting Cat Watcher', error);
             });
-    };    
+    };
 
     // Stop Cat Watcher
     const handleOff = () => {
         const token = localStorage.getItem('token');
 
-        axios.post(`${apiUrl}/docker/stop/cat-watcher`, {},{
+        axios.post(`${apiUrl}/docker/stop/cat-watcher`, {}, {
             headers: {
                 Authorization: token,
             },
@@ -141,20 +160,28 @@ function CatWatcher() {
     useEffect(() => {
         const token = localStorage.getItem('token');
 
-        axios.get(`${apiUrl}/docker/status/cat-watcher`, {
-            headers: {
-                Authorization: token,
-            },
-        })
-            .then(response => {
-                console.log('Cat Watcher status: ', response.data);
-                setAppStatus(response.data.Status);
+        const updateStatus = () => {
+            axios.get(`${apiUrl}/docker/status/cat-watcher`, {
+                headers: {
+                    Authorization: token,
+                },
             })
-            .catch(error => {
-                console.error('Error receiving Cat Watcher status: ', error);
-                setAppStatus('error')
-            });
-    }, [selectedDate, currentPage]);
+                .then(response => {
+                    console.log('Cat Watcher status: ', response.data);
+                    setAppStatus(response.data.Status);
+                })
+                .catch(error => {
+                    console.error('Error receiving Cat Watcher status: ', error);
+                    setAppStatus('error')
+                });
+        }
+
+        updateStatus();
+
+        const intervalId = setInterval(updateStatus, 5000);
+
+        return () => clearInterval(intervalId);
+    }, []);
 
     return (
         <div className='app-container'>
