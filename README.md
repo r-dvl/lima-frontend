@@ -1,12 +1,44 @@
 # Lima Frontend
-React front-end where my applications meet.
+React frontend
 
 
 ## Contents
-1. [Apps](#Apps)
+1. [Project Structure](#Project%20Structure)
+2. [Components](#Components)
+3. [Pages](#Pages)
+4. [Configuration](#Configuration)
 
 
-## Apps
-### [Cat Watcher](https://github.com/R-dVL/cat-watcher)
-The cat-watcher project is a motion detector that I use when I am away from home to spy on my cats, the photos are published in a MongoDB gathered with [lima-backend](https://github.com/R-dVL/lima-backend) API and displayed on this page.
+## Project Structure
+```text
+(root)
++- public                       # Static files
+|   +- favicon.ico
+|   +- ...
++- src
+|   +- components               # React Components
+|       +- Header
+|           +- Header.css
+|           +- Header.js
+|       +- Footer
+|           +- Footer.css
+|           +- Footer.js
+|       +- ...
+|   +- pages                    # Pages constructed
+|       +- CatWatcher.js
+|       +- Home.js
+|       +- ...
+|   +- App.js                   # App routes and main script
+```
+
+## Components
+Under construction...
+
+
+## Pages
+Under construction...
+
+
+## Configuration
+Under construction...
 
