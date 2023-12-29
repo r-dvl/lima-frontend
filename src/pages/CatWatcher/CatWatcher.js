@@ -148,7 +148,7 @@ function CatWatcher() {
         })
             .then(response => {
                 console.log('Cat Watcher status: ', response.data);
-                setAppStatus(response.data);
+                setAppStatus(response.data.Status);
             })
             .catch(error => {
                 console.error('Error receiving Cat Watcher status: ', error);
