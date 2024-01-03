@@ -11,9 +11,16 @@ import LogoutButton from "../Auth/LogoutButton";
 
 import jwt_decode from 'jwt-decode';
 
+/**
+ * @component
+ * @returns {React.Element} A header that displays navigation links and a login/logout button.
+ */
 function Header() {
     const [token, setToken] = useState(localStorage.getItem('token'));
 
+    /**
+     * Checks the JWT token's expiry time and removes it if it's expired.
+     */
     useEffect(() => {
         if (token) {
             const decodedToken = jwt_decode(token);

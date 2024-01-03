@@ -28,12 +28,20 @@ const MyButton = styled(Button)(({ theme }) => ({
     marginTop: theme.spacing(2),
 }));
 
+/**
+ * @component
+ * @returns {React.Element} A login page component that includes a form for username and password.
+ */
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const history = useHistory();
     const [error, setError] = useState('');
 
+    /**
+     * Handles the login form submission.
+     * @param {Event} e - The triggering event.
+     */
     const handleLogin = async (e) => {
         e.preventDefault();
 

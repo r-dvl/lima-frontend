@@ -5,7 +5,15 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import { LinkedIn, GitHub, Instagram } from '@mui/icons-material';
 
+/**
+ * @component
+ * @returns {React.Element} A footer that displays copyright information and social media links.
+ */
 function Footer() {
+    /**
+     * Opens the provided URL in a new tab.
+     * @param {string} url - The URL to open.
+     */
     const openSocialMediaProfile = (url) => {
         window.open(url, '_blank');
     };

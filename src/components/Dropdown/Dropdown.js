@@ -4,14 +4,27 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import './Dropdown.css'
 
+/**
+ * @component
+ * @param {object} props - The props of the component.
+ * @param {React.ReactNode} props.children - The child nodes of the component.
+ * @returns {React.Element} A dropdown menu that displays the child nodes when the button is clicked.
+ */
 const Dropdown = ({ children }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = React.useRef(null);
 
+  /**
+   * Toggles the dropdown menu open or closed.
+   */
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
   };
 
+  /**
+   * Closes the dropdown menu when a click is detected outside of it.
+   * @param {Event} event - The triggering event.
+   */
   const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;

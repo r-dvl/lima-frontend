@@ -18,10 +18,18 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 const apiUrl = process.env.REACT_APP_API_URL
 
+/**
+ * @component
+ * @returns {React.Element} A page that displays cat photos and allows for pagination and photo deletion.
+ */
 function CatWatcher() {
     const [selectedDate, setSelectedDate] = useState(new Date());
 
-    // Convert date picker time to yyyy-mm-dd
+    /**
+     * Converts a date to yyyy-mm-dd format.
+     * @param {string} dateString - The date to convert.
+     * @returns {string} The converted date.
+     */
     function convertToYyyMmDd(dateString) {
         const date = new Date(dateString);
 

@@ -6,9 +6,11 @@ import Login from "./pages/Login/Login";
 import PrivateRoute from "./components/Auth/PrivateRoute";
 import './App.css';
 
-
+/**
+ * @component
+ * @returns {React.Element} The main application component that includes routing for the Home, Login, and CatWatcher pages.
+ */
 function App() {
-
     return (
         <Router>
             <Switch>

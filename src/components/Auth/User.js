@@ -2,9 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import jwtDecode from 'jwt-decode';
 
+/**
+ * @component
+ * @returns {React.Element} A component that displays the username of the logged-in user.
+ */
 function User() {
     const [user, setUser] = useState(null);
 
+    /**
+     * Decodes the JWT token.
+     * @param {string} token - The JWT token to decode.
+     * @returns {object|null} The decoded token, or null if an error occurred.
+     */
     const decodeToken = (token) => {
         try {
             const decodedToken = jwtDecode(token);
@@ -28,7 +37,7 @@ function User() {
         <div>
             {user && <Typography variant="body2" style={{ marginLeft: '10px' }}>{user.username}</Typography>}
         </div>
-    )
+    );
 }
 
 export default User;

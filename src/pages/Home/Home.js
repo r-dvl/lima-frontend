@@ -9,15 +9,21 @@ import { TypeAnimation } from "react-type-animation";
 import '../../App.css';
 import './Home.css';
 
-
+/**
+ * @component
+ * @returns {React.Element} A home page that includes a header, a custom carousel, a contact card, and a custom scrollbar.
+ */
 function Home() {
-    //// SECTIONS ////
     const sections = useMemo(() => ["home", "projects", "contact"], []);
     const currentSectionRef = useRef(0);
     const [backgroundColor, setBackgroundColor] = useState('#88e3c8'); // Initial color (home section)
     // eslint-disable-next-line
     const [currentSection, setCurrentSection] = useState(0);
 
+    /**
+     * Handles the wheel event for scrolling between sections.
+     * @param {Event} event - The triggering event.
+     */
     const handleWheel = (event) => {
         const delta = event.deltaY;
         const currentIndex = currentSectionRef.current;
@@ -33,6 +39,10 @@ function Home() {
         scrollToSection(currentSectionRef.current);
     };
 
+    /**
+     * Scrolls to the specified section.
+     * @param {number} index - The index of the section to scroll to.
+     */
     const scrollToSection = useCallback((index) => {
         const sectionId = sections[index];
         const sectionElement = document.getElementById(sectionId);
