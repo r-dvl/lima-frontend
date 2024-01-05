@@ -5,21 +5,21 @@
   "repository": "https://github.com/r-dvl/lima-frontend.git",
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "axios": "^1.4.0",
-    "@mui/material": "^5.14.5",
-    "@mui/icons-material": "^5.14.3",
-    "@mui/system": "^5.14.6",
-    "@fontsource/roboto": "^5.0.8",
-    "@emotion/styled": "^11.11.0",
     "@emotion/react": "^11.11.1",
-    "react-datepicker": "4.16.0",
-    "react-router-dom": "5.3.4",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.5",
+    "@mui/system": "^5.14.6",
+    "axios": "^1.4.0",
     "jwt-decode": "^3.1.2",
-    "react-slick": "^0.29.0",
+    "react": "^18.2.0",
+    "react-datepicker": "4.16.0",
+    "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "5.3.4",
+    "react-scripts": "5.0.1",
+    "react-slick": "^0.29.0",
     "react-type-animation": "^3.1.0"
   },
   "scripts": {
@@ -45,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }
