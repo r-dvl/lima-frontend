@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiUrl } from '../../config';
 import '../../App.css';
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -7,8 +8,6 @@ import { TextField, Button, Container, Paper, Typography, CssBaseline } from '@m
 import { styled } from '@mui/system';
 import { useHistory } from 'react-router-dom';
 
-
-const apiUrl = process.env.REACT_APP_API_URL
 
 const MyPaper = styled(Paper)(() => ({
     marginTop: '25%',

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../../config';
 
 import DatePicker from 'react-datepicker';
 import { Paper, Button, Typography } from '@mui/material';
@@ -16,7 +17,6 @@ import '../../App.css';
 import './CatWatcher.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const apiUrl = process.env.REACT_APP_API_URL
 
 /**
  * @component
